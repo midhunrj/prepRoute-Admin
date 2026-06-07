@@ -33,7 +33,7 @@ const Login = () => {
   return (
    <>
    <div className="min-h-screen flex">
-    <div className="hidden lg:flex lg:w-1/2 flex-col justify-center items-center bg-gradient-to-br from-blue-100 to-indigo-200 text-white p-12">
+    <div className="hidden lg:flex lg:w-1/2 flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-indigo-50 text-white p-12">
     <div className="max-w-md text-center">
                 
             <div className="mb-10">
@@ -77,10 +77,10 @@ const Login = () => {
             </div>
 
     </div>
-    <h2 className='text-4xl font-bold mb-4'>Manage Your Tests Effortlessly</h2>
+    {/* <h2 className='text-4xl font-bold mb-4'>Manage Your Tests Effortlessly</h2>
     <p className='text-blue-100 text-lg'>
         create, organize, and publish assessments with ease
-    </p>
+    </p> */}
     </div>
     <div className="flex flex-1 justify-center items-center px-6">
         <div className="w-full max-w-md shadow-2xl rounded-2xl p-8">
