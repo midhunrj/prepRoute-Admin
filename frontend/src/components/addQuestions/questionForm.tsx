@@ -19,7 +19,6 @@ interface QuestionFormProps {
 }
 
 const OPTS: Array<keyof Question> = ['option1', 'option2', 'option3', 'option4'];
-const OPT_LABELS = ['A', 'B', 'C', 'D'];
 
 const RteButton: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
   <button

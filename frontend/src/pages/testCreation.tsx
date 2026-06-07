@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 
 import Layout from '../components/layout'
 import { useNavigate, useParams } from 'react-router'
@@ -14,7 +14,7 @@ import { BLANK_TC } from '../service/utils'
 
 const TABS = ['Chapter Wise', 'PYQ', 'Mock Test'];
 const TYPE_MAP: Record<string, string> = { 'Chapter Wise': 'chapterwise', 'PYQ': 'pyq', 'Mock Test': 'mock' };
-const DIFFICULTIES = ['easy', 'medium', 'hard'];
+
 const TestCreation = () => {
       const navigate = useNavigate();
   const { id } = useParams();
@@ -236,9 +236,7 @@ useEffect(() => {
     setErrors(e => ({ ...e, [field]: undefined }));
   };
 
-  const selectedSubjectName = subjects.find(s => s.id === form.subject)?.name || '';
-  const selectedTopicNames = topics.filter(t => form.topics.includes(t.id)).map(t => t.name);
-  const selectedSubTopicNames = subTopics.filter(s => form.sub_topics.includes(s.id)).map(s => s.name);
+
 
   return (
     <>

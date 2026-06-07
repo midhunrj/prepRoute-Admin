@@ -1,6 +1,6 @@
-import React, { Children, type ReactNode } from 'react'
+import React, { type ReactNode } from 'react'
 import { NavLink, useNavigate } from 'react-router'
-import { BarChart3, FileEdit, Flame, LayoutDashboard, LogOut, TrendingUp } from 'lucide-react'
+import { BarChart3, FileEdit, LogOut, TrendingUp } from 'lucide-react'
 import { useAuth } from '../context/authContext'
 import Navbar from './navbar'
 
@@ -8,7 +8,7 @@ interface SidebarProps {
   children: ReactNode;
 }
 const Sidebar: React.FC<SidebarProps> = ({children}) => {
-    const {user,logout}=useAuth()
+    const {logout}=useAuth()
     const navigate=useNavigate()
     const handlelogout=()=>
     {

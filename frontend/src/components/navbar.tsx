@@ -6,7 +6,7 @@ interface SidebarProps {
   children: ReactNode;
 }
 const Navbar: React.FC<SidebarProps> = ({children}) => {
-const {user,logout}=useAuth()
+const {user}=useAuth()
   return (
     <>
     <div className="flex-1 flex flex-col">

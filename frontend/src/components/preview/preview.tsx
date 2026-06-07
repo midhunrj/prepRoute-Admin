@@ -3,10 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import {toast} from "sonner";
 
 import { getTestById, updateTest, fetchBulkQuestions } from "../../service/apiService";
-import Sidebar from "../sidebar";
-
-import QuestionsList from "../questionsList";
-import PublishModal from "../publishModal";
 import Layout from "../layout";
 import type { LiveDuration } from "./liveUntil";
 import PreviewHeader from "./previewHeader";

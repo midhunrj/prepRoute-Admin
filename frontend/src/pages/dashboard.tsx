@@ -1,7 +1,5 @@
 // import { Sidebar } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
-import Navbar from '../components/navbar'
-import Sidebar from '../components/sidebar'
+import  { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { deleteTest, getTests } from '../service/apiService';
 import { toast } from 'sonner';

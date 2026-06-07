@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import Sidebar from '../components/sidebar'
+import  { useEffect, useState } from 'react'
 import Layout from '../components/layout'
 import QuestionForm from '../components/addQuestions/questionForm'
 import TestInfoBanner from '../components/addQuestions/testInfoBanner'
@@ -43,21 +42,7 @@ const AddQuestions = () => {
     setCurrentQ(prev => ({ ...prev, [field]: value }));
   };
 
-  const addQuestion = () => {
-    if (!currentQ.question.trim()) return toast.error('Question text is required');
-    if (!currentQ.option1 || !currentQ.option2 || !currentQ.option3 || !currentQ.option4)
-      return toast.error('All 4 options are required');
-
-    if (editIdx !== null) {
-      setQuestions(qs => qs.map((q, i) => i === editIdx ? currentQ : q));
-      setEditIdx(null);
-    } else {
-      setQuestions(qs => [...qs, currentQ]);
-    }
-    setCurrentQ(BLANK_Q());
-    setActiveQIdx(null);
-    toast.success(editIdx !== null ? 'Question updated' : 'Question added');
-  };
+  
 
   const editQuestion = (idx: number) => {
     setCurrentQ(questions[idx]);
@@ -70,20 +55,7 @@ const AddQuestions = () => {
     if (editIdx === idx) { setCurrentQ(BLANK_Q()); setEditIdx(null); }
   };
 
-  const handleSave = async () => {
-    if (questions.length === 0) return toast.error('Add at least one question');
-    setSaving(true);
-    try {
-      const payload = questions.map(q => ({ ...q, test_id: testId }));
-      await bulkCreateQuestions(payload);
-      toast.success('Questions saved!');
-      navigate(`/preview/${testId}`);
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || 'Failed to save questions');
-    } finally {
-      setSaving(false);
-    }
-  };
+  
   const saveCurrentQuestion = () => {
     if (!currentQ.question.trim()) return toast.error('Question text is required');
     if (!currentQ.option1 || !currentQ.option2 || !currentQ.option3 || !currentQ.option4)
@@ -114,8 +86,7 @@ const AddQuestions = () => {
   };
 
 
-  const OPTS: Array<keyof Question> = ['option1', 'option2', 'option3', 'option4'];
-  const OPT_LABELS = ['A', 'B', 'C', 'D'];
+
   const qNum = editIdx !== null ? editIdx + 1 : questions.length + 1;
 
   return (
