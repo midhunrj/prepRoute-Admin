@@ -7,7 +7,7 @@ import Dashboard from './pages/dashboard'
 import ProtectedRoute from './components/protectedRoute'
 import TestCreation from './pages/testCreation'
 import AddQuestions from './pages/addQuestions'
-import Preview from './pages/preview'
+import Preview from './components/preview/preview'
 import TestTracking from './pages/testTracking'
 
 function App() {

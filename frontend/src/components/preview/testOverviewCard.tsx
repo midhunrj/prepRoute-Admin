@@ -3,7 +3,7 @@
 import React from 'react';
 import { Pencil } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import type { Test } from '../types';
+import type { Test } from '../../types';
 
 
 interface TestCardProps {

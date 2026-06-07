@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {toast} from "sonner";
 
-import { getTestById, updateTest, fetchBulkQuestions } from "../service/apiService";
-import Sidebar from "../components/sidebar";
-import PreviewHeader from "../components/previewHeader";
-import TestOverviewCard from "../components/testOverviewCard";
-import QuestionsList from "../components/questionsList";
-import PublishModal from "../components/publishModal";
-import Layout from "../components/layout";
-import type { LiveDuration } from "../components/liveUntil";
-import LiveUntil from "../components/liveUntil";
-import ScheduleRow from "../components/scheduleRow";
-import PreviewFooter from "../components/previewFooter";
-import StatusBar from "../components/statusBar";
+import { getTestById, updateTest, fetchBulkQuestions } from "../../service/apiService";
+import Sidebar from "../sidebar";
+
+import QuestionsList from "../questionsList";
+import PublishModal from "../publishModal";
+import Layout from "../layout";
+import type { LiveDuration } from "./liveUntil";
+import PreviewHeader from "./previewHeader";
+import StatusBar from "./statusBar";
+import TestOverviewCard from "./testOverviewCard";
+import ScheduleRow from "./scheduleRow";
+import LiveUntil from "./liveUntil";
+import PreviewFooter from "./previewFooter";
+
 
 
 
