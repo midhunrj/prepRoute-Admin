@@ -47,7 +47,7 @@ const MultiSelect = ({
     }, [setOpen]);
     
   return (
-    <div className="relative">
+    <div ref={dropdownRef} className="relative">
       <label className="block mb-2 text-sm font-medium">
         {label}
       </label>
@@ -67,7 +67,7 @@ const MultiSelect = ({
       </button>
 
       {open && (
-        <div ref={dropdownRef} className="absolute z-20 w-full bg-white border rounded-lg shadow mt-2 max-h-60 overflow-y-auto">
+        <div  className="absolute z-20 w-full bg-white border rounded-lg shadow mt-2 max-h-60 overflow-y-auto">
           {items.map((item) => (
             <label
               key={item.id}
