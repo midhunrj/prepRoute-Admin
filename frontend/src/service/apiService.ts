@@ -6,8 +6,11 @@ const adminAuthenticate = axios.create({ baseURL: BASE_URL });
 
 adminAuthenticate.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
+  if (token) 
+    {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+      return config;
 });
 
 export const login = (userId: string, password: string) =>
@@ -17,8 +20,11 @@ export const getSubjects = () => adminAuthenticate.get('/subjects');
 
 export const getTopicsBySubject = (subjectId: string) => adminAuthenticate.get(`/topics/subject/${subjectId}`);
 
-export const getSubTopicsByTopics = (topicIds: string[]) =>
-  adminAuthenticate.post('/sub-topics/multi-topics', { topicIds });
+export const getSubTopicsByTopics = (topicId: string[]) =>
+  adminAuthenticate.get(`/sub-topics/topic/${ topicId }`);
+
+export const getMultipleTopicsByTopicList = (topicIds: string[]) =>
+  adminAuthenticate.post(`/sub-topics/multi-topics/`,{ topicIds });
 
 export const getTests = () => adminAuthenticate.get('/tests');
 

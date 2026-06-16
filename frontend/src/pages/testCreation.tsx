@@ -3,7 +3,7 @@ import  { useEffect, useState } from 'react'
 import Layout from '../components/layout'
 import { useNavigate, useParams } from 'react-router'
 import type { Subject, SubTopic, TestFormData, Topic } from '../types'
-import { createTest, getSubjects, getSubTopicsByTopics, getTestById, getTopicsBySubject, updateTest } from '../service/apiService'
+import { createTest, getMultipleTopicsByTopicList, getSubjects, getSubTopicsByTopics, getTestById, getTopicsBySubject, updateTest } from '../service/apiService'
 import { toast } from 'sonner'
 import Breadcrumb from '../components/testCreation/breadCrumb'
 import TestTypeTabs from '../components/testCreation/testTypeTabs'
@@ -82,7 +82,7 @@ useEffect(() => {
 
       if (topicIds.length) {
         const subTopicsRes =
-          await getSubTopicsByTopics(topicIds);
+          await getMultipleTopicsByTopicList(topicIds);
 
         const subTopicsData =
           subTopicsRes.data.data || [];
@@ -153,7 +153,8 @@ useEffect(() => {
   const loadSubTopics = async (topicIds: string[]) => {
     if (!topicIds.length) { setSubTopics([]); return; }
     try {
-      const res = await getSubTopicsByTopics(topicIds);
+      
+      const res = await getMultipleTopicsByTopicList(topicIds);
       setSubTopics(res.data.data || []);
     } catch {}
   };
