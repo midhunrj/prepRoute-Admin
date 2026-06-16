@@ -24,7 +24,7 @@ const RteButton: React.FC<{ title: string; children: React.ReactNode }> = ({ tit
   <button
     type="button"
     title={title}
-    className="px-1.5 py-1 text-[13px] text-gray-500 hover:bg-gray-200 hover:text-gray-800 rounded transition-colors leading-snug"
+    className="px-1.5 py-1 text-[13px] cursor-pointer text-gray-500 hover:bg-gray-200 hover:text-gray-800 rounded transition-colors leading-snug"
   >
     {children}
   </button>
@@ -92,7 +92,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
           <button
             type="button"
             onClick={onDeleteQuestion}
-            className="flex items-center gap-1.5 text-[12px] text-red-500 hover:underline transition-colors"
+            className="flex items-center cursor-pointer gap-1.5 text-[12px] text-red-500 hover:underline transition-colors"
           >
             <Trash2 size={13} />
             Delete All Extra
@@ -103,13 +103,13 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
         <div className="flex gap-2">
           <button
             type="button"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 border border-[#4F6CF7] bg-[#EEF1FE] text-[#4F6CF7] text-[13px] font-medium rounded-lg transition-colors"
+            className="flex items-center cursor-pointer gap-1.5 px-3.5 py-1.5 border border-[#4F6CF7] bg-[#EEF1FE] text-[#4F6CF7] text-[13px] font-medium rounded-lg transition-colors"
           >
             <Plus size={13} /> MCQ
           </button>
           <button
             type="button"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 border border-gray-200 text-gray-500 text-[13px] font-medium rounded-lg hover:border-[#4F6CF7] hover:text-[#4F6CF7] transition-colors"
+            className="flex items-center cursor-pointer gap-1.5 px-3.5 py-1.5 border border-gray-200 text-gray-500 text-[13px] font-medium rounded-lg hover:border-[#4F6CF7] hover:text-[#4F6CF7] transition-colors"
           >
             + CSV
           </button>
@@ -190,7 +190,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
                   
                   <button
                     type="button"
-                    className="p-1.5 border border-gray-200 rounded-md text-gray-400 hover:border-[#4F6CF7] hover:text-[#4F6CF7] transition-colors"
+                    className="p-1.5 border cursor-pointer border-gray-200 rounded-md text-gray-400 hover:border-[#4F6CF7] hover:text-[#4F6CF7] transition-colors"
                   >
                     <ChevronDown size={14} />
                   </button>
@@ -213,7 +213,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
             />
             <button
               type="button"
-              className="absolute right-2 bottom-2.5 p-1 border border-gray-200 rounded text-gray-400 hover:text-[#4F6CF7] transition-colors"
+              className="absolute right-2 bottom-2.5 p-1 cursor-pointer border border-gray-200 rounded text-gray-400 hover:text-[#4F6CF7] transition-colors"
             >
               <ChevronDown size={13} />
             </button>
@@ -222,8 +222,8 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
 
         
         <div className="flex justify-center gap-2">
-          <button type="button" className="px-3 py-1 bg-gray-100 border border-gray-200 rounded text-gray-400 text-[15px] hover:bg-gray-200 transition-colors">‹</button>
-          <button type="button" className="px-3 py-1 bg-gray-100 border border-gray-200 rounded text-gray-400 text-[15px] hover:bg-gray-200 transition-colors">›</button>
+          <button type="button" className="px-3 py-1 bg-gray-100 border cursor-pointer border-gray-200 rounded text-gray-400 text-[15px] hover:bg-gray-200 transition-colors">‹</button>
+          <button type="button" className="px-3 py-1 bg-gray-100 border cursor-pointer border-gray-200 rounded text-gray-400 text-[15px] hover:bg-gray-200 transition-colors">›</button>
         </div>
 
 
@@ -263,7 +263,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
           <button
             type="button"
             onClick={() => navigate(`/test-creation/${testId}`)}
-            className="px-4 py-2 bg-red-100 text-red-600 text-[13px] font-semibold rounded-lg hover:bg-red-200 transition-colors"
+            className="px-4 py-2 bg-[#FF7F7F] text-white/80 cursor-pointer text-[13px] font-semibold rounded-lg hover:text-white hover:bg-[#ef5757] transition-colors"
           >
             Exit Test Creation
           </button>
@@ -272,7 +272,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
             <button
               type="button"
               onClick={onSaveQuestion}
-              className="px-4 py-2 border border-[#4F6CF7] text-[#4F6CF7] bg-white text-[13px] font-semibold rounded-lg hover:bg-[#EEF1FE] transition-colors"
+              className="px-4 py-2 border border-[#4F6CF7] cursor-pointer text-[#4F6CF7] bg-white text-[13px] font-semibold rounded-lg hover:bg-[#EEF1FE] transition-colors"
             >
               {editIdx !== null ? 'Update Question' : '+ Add Question'}
             </button>
@@ -280,7 +280,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
               type="button"
               onClick={onSaveAndNext}
               disabled={saving}
-              className="px-6 py-2 bg-[#4F6CF7] text-white text-[13px] font-semibold rounded-lg hover:bg[#3B56E8] disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+              className="px-6 py-2 bg-[#4F6CF7] cursor-pointer text-white text-[13px] font-semibold rounded-lg hover:bg[#3B56E8] disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
             >
               {saving ? 'Saving...' : 'Next'}
             </button>

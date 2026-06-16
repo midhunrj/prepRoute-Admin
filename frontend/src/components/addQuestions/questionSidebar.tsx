@@ -38,7 +38,7 @@ const QuestionSidebar = ({
         )}
         <button
           onClick={() => setCollapsed(c => !c)}
-          className="p-0.5 text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 ml-auto"
+          className="p-0.5 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors flex-shrink-0 ml-auto"
         >
           {collapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
         </button>
@@ -50,22 +50,35 @@ const QuestionSidebar = ({
           <div className="flex-1 py-2 overflow-y-auto">
             {questions.map((_, idx) => (
               <div
-                key={idx}
-                onClick={() => editQuestion(idx)}
-                className={`
-                  flex items-center gap-2 px-3.5 py-2 cursor-pointer text-[12px] 
-                  transition-colors group
-                  ${activeQIdx === idx
-                    ? 'bg-[#EEF1FE] text-[#4F6CF7] font-semibold'
-                    : 'text-gray-700 hover:bg-gray-50'
-                  }
-                `}
-              >
-                
-                <span className="w-2.5 h-2.5 rounded-full bg-green-500 flex-shrink-0" />
-                <span className="flex-1">Question {idx + 1}</span>
-                <span className="text-gray-400">›</span>
-              </div>
+  key={idx}
+  onClick={() => editQuestion(idx)}
+  className={`
+    flex items-center text-[12px] gap-3 px-3 py-3 rounded-lg border cursor-pointer
+    transition-all
+    ${
+      activeQIdx === idx
+        ? "bg-green-50 border-green-500 text-green-700 shadow-sm"
+        : "bg-white border-green-300 text-green-600 hover:bg-green-50"
+    }
+  `}
+>
+  <div
+    className="
+      w-3 h-3 rounded-full
+      bg-green-500 text-white
+      flex items-center justify-center
+      text-[8px] font-bold
+    "
+  >
+    ✓
+  </div>
+
+  <span className="flex-1">
+    Question {idx + 1}
+  </span>
+
+   <span>››</span>
+</div>
             ))}
 
             
@@ -73,9 +86,9 @@ const QuestionSidebar = ({
               onClick={addNewQuestion}
               className="flex items-center gap-2 px-3.5 py-2 cursor-pointer text-[12px] text-gray-700 hover:bg-gray-50 transition-colors"
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-[#4F6CF7] flex-shrink-0" />
+              <span className="w-3 h-3 rounded-full bg-[#4F6CF7] flex-shrink-0" />
               <span className="flex-1">Question {questions.length + 1}</span>
-              <span className="text-gray-400">›</span>
+              <span className="text-gray-400">››</span>
             </div>
           </div>
 

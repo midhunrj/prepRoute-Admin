@@ -57,9 +57,18 @@ const AddQuestions = () => {
 
   
   const saveCurrentQuestion = () => {
-    if (!currentQ.question.trim()) return toast.error('Question text is required');
+    if (!currentQ.question.trim())
+      {
+         return toast.error('Question text is required');
+      }
     if (!currentQ.option1 || !currentQ.option2 || !currentQ.option3 || !currentQ.option4)
-      return toast.error('All 4 options are required');
+        {
+         return toast.error('All 4 options are required');
+        }
+        if (!currentQ.correct_option)
+        {
+          return toast.error("Please select the correct answer");
+        }
     if (editIdx !== null) {
       setQuestions(qs => qs.map((q, i) => (i === editIdx ? currentQ : q)));
       setEditIdx(null);
@@ -75,8 +84,25 @@ const AddQuestions = () => {
   const handleSaveAndNext = async () => {
     if (questions.length === 0) return toast.error('Add at least one question');
     setSaving(true);
-    try {
-      const payload = questions.map(q => ({ ...q, test_id: testId }));
+    try {let finalQuestions = [...questions];
+
+if (
+  currentQ.question &&
+  currentQ.option1 &&
+  currentQ.option2 &&
+  currentQ.option3 &&
+  currentQ.option4
+) {
+  finalQuestions.push({
+    ...currentQ,
+    type: "mcq",
+  });
+}
+
+const payload = finalQuestions.map(q => ({
+  ...q,
+  test_id: testId,
+}));
       await bulkCreateQuestions(payload);
       toast.success('Questions saved!');
       navigate(`/preview/${testId}`);

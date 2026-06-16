@@ -55,7 +55,7 @@ const MultiSelect = ({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full border rounded-lg px-4 py-3 flex justify-between items-center"
+        className="w-full border cursor-pointer rounded-lg px-4 py-3 flex justify-between items-center"
       >
         <span>
           {selected.length

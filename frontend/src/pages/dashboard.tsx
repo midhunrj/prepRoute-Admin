@@ -180,7 +180,7 @@ const paginationItems = getPaginationItems(
 
           <button
             onClick={() => navigate("/test-creation")}
-            className="bg-[#384EC7] text-white px-4 py-2 rounded-lg"
+            className="bg-[#384EC7] cursor-pointer text-white px-4 py-2 rounded-lg"
           >
             Create Test
           </button>
@@ -254,7 +254,7 @@ const paginationItems = getPaginationItems(
                         onClick={() =>
                           navigate(`/preview/${test.id}`)
                         }
-                        className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200"
+                        className="p-2 rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200"
                       >
                         <Eye size={16} />
                       </button>
@@ -265,7 +265,7 @@ const paginationItems = getPaginationItems(
                             `/test-creation/${test.id}`
                           )
                         }
-                        className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 text-[#1B5DEF]"
+                        className="p-2 rounded-lg cursor-pointer bg-blue-100 hover:bg-blue-200 text-[#1B5DEF]"
                       >
                         <Pencil size={16} />
                       </button>
@@ -274,7 +274,7 @@ const paginationItems = getPaginationItems(
                         onClick={() =>
                           handleDelete(test.id)
                         }
-                        className="p-2 rounded-lg bg-red-100 hover:bg-red-200 text-red-600"
+                        className="p-2 rounded-lg cursor-pointer bg-red-100 hover:bg-red-200 text-red-600"
                       >
                         <Trash2 size={16} />
                       </button>
@@ -299,7 +299,7 @@ const paginationItems = getPaginationItems(
     onClick={() =>
       setCurrentPage((prev) => prev - 1)
     }
-    className="px-3 py-2 border rounded cursor-pointer"
+    className="px-3 py-2 cursor-pointer border rounded cursor-pointer"
   >
     Prev
   </button>

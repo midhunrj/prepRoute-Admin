@@ -109,7 +109,7 @@ const Login = () => {
             <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}
              className='w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500' />
             </div>
-            <button type='submit' className='w-full bg-blue-500 hover:bg-blue-700 text-white  py-3 rounded-lg font-medium transition disabled:opacity-60'>
+            <button type='submit' className='w-full bg-[#5988EF] cursor-pointer hover:bg-blue-700 text-white  py-3 rounded-lg font-medium transition disabled:opacity-60'>
                 {loading?'logging in':'Login'}
             </button>
 

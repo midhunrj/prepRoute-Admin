@@ -93,7 +93,7 @@ const TestOverviewCard: React.FC<TestCardProps> = ({ test, testId, publishTab, s
           <button
             onClick={() => setPublishTab('now')}
             className={`
-              px-3.5 py-1.5 text-[13px] font-medium border-b-2 -mb-0.5 transition-all whitespace-nowrap
+              px-3.5 py-1.5 text-[13px] font-medium cursor-pointer border-b-2 -mb-0.5 transition-all whitespace-nowrap
               ${publishTab === 'now'
                 ? 'text-[#4F6CF7] border-[#4F6CF7]'
                 : 'text-gray-400 border-transparent hover:text-gray-700'
@@ -105,7 +105,7 @@ const TestOverviewCard: React.FC<TestCardProps> = ({ test, testId, publishTab, s
           <button
             onClick={() => setPublishTab('schedule')}
             className={`
-              px-3.5 py-1.5 text-[13px] font-medium border-b-2 -mb-0.5 transition-all whitespace-nowrap
+              px-3.5 py-1.5 text-[13px] cursor-pointer font-medium border-b-2 -mb-0.5 transition-all whitespace-nowrap
               ${publishTab === 'schedule'
                 ? 'text-[#4F6CF7] border-[#4F6CF7]'
                 : 'text-gray-400 border-transparent hover:text-gray-700'
@@ -120,7 +120,7 @@ const TestOverviewCard: React.FC<TestCardProps> = ({ test, testId, publishTab, s
 
       <button
         onClick={() => navigate(`/test-creation/${testId}`)}
-        className="absolute top-4 right-4 p-1.5 border border-gray-200 rounded-lg text-gray-400 hover:border-[#4F6CF7] hover:text-[#4F6CF7] transition-all"
+        className="absolute top-4 right-4 p-1.5 cursor-pointer border border-gray-200 rounded-lg text-gray-400 hover:border-[#4F6CF7] hover:text-[#4F6CF7] transition-all"
       >
         <Pencil size={14} />
       </button>
