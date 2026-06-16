@@ -32,7 +32,7 @@ const QuestionsList = ({
           onClick={() =>
             navigate(`/add-questions/${testId}`)
           }
-          className="flex items-center gap-2 rounded-lg border px-4 py-2 hover:border-blue-500 hover:text-blue-600"
+          className="flex items-center gap-2 rounded-lg border px-4 py-2 hover:border-blue-500 hover:text-[#384EC7]"
         >
           <Pencil size={15} />
           Edit Questions

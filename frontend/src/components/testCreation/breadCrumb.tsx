@@ -11,7 +11,7 @@ const Breadcrumb = ({ activeTab }: BreadcrumbProps) => {
     <div className="flex items-center gap-2 text-sm text-slate-500">
       <button
         onClick={() => navigate("/dashboard")}
-        className="hover:text-blue-600"
+        className="hover:text-[#384EC7]"
       >
         Test Creation
       </button>
@@ -20,7 +20,7 @@ const Breadcrumb = ({ activeTab }: BreadcrumbProps) => {
 
       <button
         onClick={() => navigate("/test-creation")}
-        className="hover:text-blue-600"
+        className="hover:text-[#384EC7]"
       >
         Create Test
       </button>

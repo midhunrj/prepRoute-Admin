@@ -84,7 +84,7 @@ const TestInfoBanner: React.FC<TestInfoBannerProps> = ({ test }) => {
         </div>
         <button
           onClick={() => navigate(`/preview/${testId}`)}
-          className="px-5 py-2 bg-blue-500 text-white text-[13px] font-semibold rounded-lg hover:bg-blue-900 transition-colors"
+          className="px-5 py-2 bg-[#7489FF] text-[#FAFAFA] text-[13px] font-semibold rounded-lg hover:bg-[#384EC7] transition-colors"
         >
           Publish
         </button>

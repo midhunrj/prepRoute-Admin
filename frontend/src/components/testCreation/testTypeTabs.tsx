@@ -18,7 +18,7 @@ const TestTypeTabs = ({
           className={`px-5 py-3 border-b-2 text-sm font-medium transition
           ${
             activeTab === tab
-              ? "border-blue-600 text-blue-600"
+              ? "border-[#384EC7] text-[#384EC7]"
               : "border-transparent text-slate-500"
           }`}
         >

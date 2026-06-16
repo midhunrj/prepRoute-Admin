@@ -21,7 +21,7 @@ const PreviewHeader = ({ onPublish }: Props) => {
 
       <button
         onClick={onPublish}
-        className="rounded-lg bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
+        className="rounded-lg bg-[#7489FF] px-5 py-2 text-[#FAFAFA] hover:bg-[#384EC7]"
       >
         Publish
       </button>

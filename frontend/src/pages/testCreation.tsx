@@ -411,7 +411,7 @@ useEffect(() => {
 
   <button
     onClick={() => navigate("/dashboard")}
-    className="px-5 py-2 border rounded-lg hover:bg-slate-50"
+    className="px-5 py-2 border rounded-lg cursor-pointer hover:bg-[#F8FAFF] hover:text-[#384EC7]"
   >
     Cancel
   </button>
@@ -419,7 +419,7 @@ useEffect(() => {
   <button
     onClick={() => handleSubmit(true)}
     disabled={loading}
-    className="px-5 py-2 border rounded-lg hover:bg-slate-50"
+    className="px-5 py-2 border rounded-lg cursor-pointer hover:bg-[#F8FAFF] hover:text-[#384EC7]"
   >
     Save Draft
   </button>
@@ -427,7 +427,7 @@ useEffect(() => {
   <button
     onClick={() => handleSubmit(false)}
     disabled={loading}
-    className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+  className="px-5 py-2 bg-[#7489FF] text-[#FAFAFA] cursor-pointer rounded-lg hover:bg-[#384EC7]"
   >
     {loading
       ? "Saving..."

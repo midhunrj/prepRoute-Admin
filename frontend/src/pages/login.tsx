@@ -86,9 +86,9 @@ const Login = () => {
         <div className="w-full max-w-md shadow-2xl rounded-2xl p-8">
          <div className="text-center mb-8">
            <h1 className='text-4xl font-bold'>
-            <span className='text-blue-600'>Prep</span>
+            <span className='text-[#1B5DEF]'>Prep</span>
             
-            <span className='text-blue-600'>Route</span></h1> 
+            <span className='text-[#1B5DEF]'>Route</span></h1> 
             <h2 className='text-2xl font-semibold mt-6'>Login</h2>
             <p className='text-slate-500 mt-2'> Use your company credentials</p>
 

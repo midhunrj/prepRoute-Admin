@@ -69,7 +69,7 @@ const PublishModal = ({
           <button
             onClick={onPublish}
             disabled={publishing}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-white"
+            className="rounded-lg bg-[#7489FF] px-4 py-2 text-[#FAFAFA] hover:bg-[#384EC7]"
           >
             {publishing
               ? "Publishing..."

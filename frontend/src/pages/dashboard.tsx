@@ -116,7 +116,7 @@ const paginationItems = getPaginationItems(
 
       <button
         onClick={() => navigate("/test-creation")}
-        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg"
+        className="flex items-center gap-2 cursor-pointer bg-[#384EC7] hover:bg-[#1B5DEF] text-[#FAFAFA] px-5 py-3 rounded-lg"
       >
         <Plus size={18} />
         Create New Test
@@ -180,7 +180,7 @@ const paginationItems = getPaginationItems(
 
           <button
             onClick={() => navigate("/test-creation")}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+            className="bg-[#384EC7] text-white px-4 py-2 rounded-lg"
           >
             Create Test
           </button>
@@ -265,7 +265,7 @@ const paginationItems = getPaginationItems(
                             `/test-creation/${test.id}`
                           )
                         }
-                        className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-600"
+                        className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 text-[#1B5DEF]"
                       >
                         <Pencil size={16} />
                       </button>

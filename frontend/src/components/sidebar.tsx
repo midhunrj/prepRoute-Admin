@@ -21,25 +21,25 @@ const Sidebar: React.FC<SidebarProps> = ({children}) => {
         <aside className='w-64 bg-white border-r border-[#E5E7EB] flex flex-col'>
             <div className='h-16 flex items-center px-6 '>
                 <h1 className='text-4xl font-bold'>
-            <span className='text-blue-600'>Prep</span>
-            <span className='text-blue-600'>Route</span></h1> 
+            <span className='text-[#1B5DEF]'>Prep</span>
+            <span className='text-[#1B5DEF]'>Route</span></h1> 
 
             </div>
-            <nav className='flex-1 p-4 space-y-2'>
+            <nav className='flex-1 p-4 text-[#6B7180] space-y-2'>
                 <NavLink to='/dashboard'
-                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-blue-600 text-white': 'hover:text-slate-700 hover:bg-slate-100'}`}>
+                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-[#F8FAFF] text-[#384EC7]  border-l-8 shadow-2xl border-[#384EC7]': 'hover:text-[#384EC7] '}`}>
                 <TrendingUp size={18}/>
                 Dashboard    
                 </NavLink>
 
                 <NavLink to='/test-creation'
-                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-blue-600 text-white': 'hover:text-slate-700 hover:bg-slate-100'}`}>
+                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-[#F8FAFF] text-[#384EC7]  border-l-8 shadow-2xl border-[#384EC7]': 'hover:text-[#384EC7] '}`}>
                 <FileEdit size={18}/>
                 test-creation
                 </NavLink>
 
                 <NavLink to='/test-tracking'
-                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-blue-600 text-white': 'hover:text-slate-700 hover:bg-slate-100'}`}>
+                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-[#F8FAFF] text-[#384EC7]  border-l-8 shadow-2xl border-[#384EC7]': 'hover:text-[#384EC7] '}`}>
                 <BarChart3 size={18}/>
                 test tracking    
                 </NavLink>
