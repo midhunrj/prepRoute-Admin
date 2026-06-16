@@ -102,7 +102,9 @@ if (
 const payload = finalQuestions.map(q => ({
   ...q,
   test_id: testId,
+  subject:test?.subject
 }));
+console.log("Payload => ", payload);
       await bulkCreateQuestions(payload);
       toast.success('Questions saved!');
       navigate(`/preview/${testId}`);
