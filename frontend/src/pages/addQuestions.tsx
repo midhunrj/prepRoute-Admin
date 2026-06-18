@@ -1,42 +1,26 @@
-import  { useEffect, useState } from 'react'
+import  { useState } from 'react'
 import Layout from '../components/layout'
 import QuestionForm from '../components/addQuestions/questionForm'
 import TestInfoBanner from '../components/addQuestions/testInfoBanner'
 import QuestionSidebar from '../components/addQuestions/questionSidebar'
 import Breadcrumb from '../components/testCreation/breadCrumb'
-import type { Question, SubTopic, Test, Topic } from '../types'
+import type { Question, SubTopic, Topic } from '../types'
 import { toast } from 'sonner'
 import { useNavigate, useParams } from 'react-router'
-import { bulkCreateQuestions, fetchBulkQuestions, getTestById } from '../service/apiService'
-import { BLANK_Q } from '../service/utils'
+import { bulkCreateQuestions } from '../service/apiService'
+import { BLANK_Q, getApiErrorMessage } from '../service/utils'
+import useTestWithQuestions from '../hooks/useTestWithQuestions'
 
 const AddQuestions = () => {
   const { testId } = useParams();
   const navigate = useNavigate();
-  const [test, setTest] = useState<Test | null>(null);
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const { test, questions, setQuestions } = useTestWithQuestions(testId);
   const [currentQ, setCurrentQ] = useState<Question>(BLANK_Q());
   const [editIdx, setEditIdx] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [activeQIdx, setActiveQIdx] = useState<number | null>(null);
   const [topics, setTopics] = useState<Topic[]>([]);
   const [subTopics, setSubTopics] = useState<SubTopic[]>([]);
-
-  useEffect(() => {
-    if (testId) loadTest();
-  }, [testId]);
-
-  const loadTest = async () => {
-    try {
-      const res = await getTestById(testId!);
-      const t = res.data.data;
-      setTest(t);
-      if (t.questions?.length) {
-        const qRes = await fetchBulkQuestions(t.questions);
-        setQuestions(qRes.data.data || []);
-      }
-    } catch { toast.error('Failed to load test'); }
-  };
 
   const handleQChange = (field: keyof Question, value: string) => {
     setCurrentQ(prev => ({ ...prev, [field]: value }));
@@ -108,8 +92,8 @@ console.log("Payload => ", payload);
       await bulkCreateQuestions(payload);
       toast.success('Questions saved!');
       navigate(`/preview/${testId}`);
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || 'Failed to save questions');
+    } catch (err: unknown) {
+      toast.error(getApiErrorMessage(err, 'Failed to save questions'));
     } finally { setSaving(false); }
   };
 

@@ -7,6 +7,14 @@ import Navbar from './navbar'
 interface SidebarProps {
   children: ReactNode;
 }
+
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `flex items-center gap-3 px-4 py-3 rounded-lg transition ${
+    isActive
+      ? 'bg-[#F8FAFF] text-[#384EC7]  border-l-8 shadow-2xl border-[#384EC7]'
+      : 'hover:text-[#384EC7] '
+  }`;
+
 const Sidebar: React.FC<SidebarProps> = ({children}) => {
     const {logout}=useAuth()
     const navigate=useNavigate()
@@ -26,20 +34,17 @@ const Sidebar: React.FC<SidebarProps> = ({children}) => {
 
             </div>
             <nav className='flex-1 p-4 text-[#6B7180] space-y-2'>
-                <NavLink to='/dashboard'
-                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-[#F8FAFF] text-[#384EC7]  border-l-8 shadow-2xl border-[#384EC7]': 'hover:text-[#384EC7] '}`}>
+                <NavLink to='/dashboard' className={navLinkClass}>
                 <TrendingUp size={18}/>
                 Dashboard    
                 </NavLink>
 
-                <NavLink to='/test-creation'
-                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-[#F8FAFF] text-[#384EC7]  border-l-8 shadow-2xl border-[#384EC7]': 'hover:text-[#384EC7] '}`}>
+                <NavLink to='/test-creation' className={navLinkClass}>
                 <FileEdit size={18}/>
                 test-creation
                 </NavLink>
 
-                <NavLink to='/test-tracking'
-                className={({isActive})=>`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive ? 'bg-[#F8FAFF] text-[#384EC7]  border-l-8 shadow-2xl border-[#384EC7]': 'hover:text-[#384EC7] '}`}>
+                <NavLink to='/test-tracking' className={navLinkClass}>
                 <BarChart3 size={18}/>
                 test tracking    
                 </NavLink>

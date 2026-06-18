@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {toast} from "sonner";
 
-import { getTestById, updateTest, fetchBulkQuestions } from "../../service/apiService";
+import { updateTest } from "../../service/apiService";
 import Layout from "../layout";
 import type { LiveDuration } from "./liveUntil";
 import PreviewHeader from "./previewHeader";
@@ -11,7 +11,7 @@ import TestOverviewCard from "./testOverviewCard";
 import ScheduleRow from "./scheduleRow";
 import LiveUntil from "./liveUntil";
 import PreviewFooter from "./previewFooter";
-
+import useTestWithQuestions from "../../hooks/useTestWithQuestions";
 
 
 
@@ -19,9 +19,7 @@ const Preview = () => {
   const { testId } = useParams();
   const navigate = useNavigate();
 
-  const [test, setTest] = useState<any>(null);
-  const [questions, setQuestions] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { test, questions, loading } = useTestWithQuestions(testId);
 
   const [showPublishModal, setShowPublishModal] = useState(false);
   const [publishing, setPublishing] = useState(false);
@@ -31,31 +29,6 @@ const Preview = () => {
   const [scheduleTime, setScheduleTime] = useState('');
   const [endDate, setEndDate] = useState('');
   const [endTime, setEndTime] = useState('');
-  useEffect(() => {
-    if (testId) loadTest();
-  }, [testId]);
-
-  const loadTest = async () => {
-    try {
-      setLoading(true);
-
-      const res = await getTestById(testId!);
-
-      const testData = res.data.data;
-
-      setTest(testData);
-
-      if (testData.questions?.length) {
-        const qRes = await fetchBulkQuestions(testData.questions);
-
-        setQuestions(qRes.data.data || []);
-      }
-    } catch {
-      toast.error("Failed to load test");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handlePublish = async () => {
     try {
