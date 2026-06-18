@@ -1,4 +1,5 @@
 import axios from 'axios';
+import type { TestFormData, Question } from '../types';
 
 const BASE_URL = import.meta.env.VITE_Admin_Url;
 
@@ -6,12 +7,25 @@ const adminAuthenticate = axios.create({ baseURL: BASE_URL });
 
 adminAuthenticate.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
-  if (token) 
-    {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-      return config;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
+
+adminAuthenticate.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const login = (userId: string, password: string) =>
   adminAuthenticate.post('/auth/login', { userId, password });
@@ -30,13 +44,13 @@ export const getTests = () => adminAuthenticate.get('/tests');
 
 export const getTestById = (id: string) => adminAuthenticate.get(`/tests/${id}`);
 
-export const createTest = (data: any) => adminAuthenticate.post('/tests', data);
+export const createTest = (data: Partial<TestFormData> & { status: string }) => adminAuthenticate.post('/tests', data);
 
-export const updateTest = (id: string, data: any) => adminAuthenticate.put(`/tests/${id}`, data);
+export const updateTest = (id: string, data: Partial<TestFormData> & { status?: string }) => adminAuthenticate.put(`/tests/${id}`, data);
 
 export const deleteTest = (id: string) => adminAuthenticate.delete(`/tests/${id}`);
 
-export const bulkCreateQuestions = (questions: any[]) =>
+export const bulkCreateQuestions = (questions: Partial<Question>[]) =>
   adminAuthenticate.post('/questions/bulk', { questions });
 
 export const fetchBulkQuestions = (question_ids: string[]) =>

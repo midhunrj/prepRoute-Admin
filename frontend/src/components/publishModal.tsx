@@ -1,5 +1,7 @@
+import type { Test } from '../types';
+
 interface Props {
-  test: any;
+  test: Test;
   publishing: boolean;
   onClose: () => void;
   onPublish: () => void;

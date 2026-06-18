@@ -182,7 +182,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
                   <input
                     type="text"
                     placeholder="Type Option Here"
-                    value={(currentQ as any)[opt] || ''}
+                    value={currentQ[opt] || ''}
                     onChange={e => handleQChange(opt, e.target.value)}
                     className="flex-1 px-3.5 py-2.5 border border-gray-200 rounded-lg text-[13px] text-gray-700 outline-none focus:border-[#4F6CF7] transition-colors"
                   />
