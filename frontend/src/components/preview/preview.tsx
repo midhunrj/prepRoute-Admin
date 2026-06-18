@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {toast} from "sonner";
 
 import { getTestById, updateTest, fetchBulkQuestions } from "../../service/apiService";
+import { getErrorMessage } from "../../service/utils";
 import Layout from "../layout";
 import type { LiveDuration } from "./liveUntil";
 import PreviewHeader from "./previewHeader";
@@ -50,8 +51,8 @@ const Preview = () => {
 
         setQuestions(qRes.data.data || []);
       }
-    } catch {
-      toast.error("Failed to load test");
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error, "Failed to load test"));
     } finally {
       setLoading(false);
     }
@@ -68,8 +69,8 @@ const Preview = () => {
       toast.success("Test published successfully");
 
       navigate("/dashboard");
-    } catch {
-      toast.error("Failed to publish");
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error, "Failed to publish test"));
     } finally {
       setPublishing(false);
     }

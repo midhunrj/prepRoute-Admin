@@ -8,7 +8,7 @@ import type { Question, SubTopic, Test, Topic } from '../types'
 import { toast } from 'sonner'
 import { useNavigate, useParams } from 'react-router'
 import { bulkCreateQuestions, fetchBulkQuestions, getTestById } from '../service/apiService'
-import { BLANK_Q } from '../service/utils'
+import { BLANK_Q, getErrorMessage } from '../service/utils'
 
 const AddQuestions = () => {
   const { testId } = useParams();
@@ -35,7 +35,7 @@ const AddQuestions = () => {
         const qRes = await fetchBulkQuestions(t.questions);
         setQuestions(qRes.data.data || []);
       }
-    } catch { toast.error('Failed to load test'); }
+    } catch (error: unknown) { toast.error(getErrorMessage(error, 'Failed to load test')); }
   };
 
   const handleQChange = (field: keyof Question, value: string) => {
@@ -108,8 +108,8 @@ console.log("Payload => ", payload);
       await bulkCreateQuestions(payload);
       toast.success('Questions saved!');
       navigate(`/preview/${testId}`);
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || 'Failed to save questions');
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error, 'Failed to save questions'));
     } finally { setSaving(false); }
   };
 

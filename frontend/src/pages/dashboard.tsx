@@ -3,6 +3,7 @@ import  { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { deleteTest, getTests } from '../service/apiService';
 import { toast } from 'sonner';
+import { getErrorMessage } from '../service/utils';
 import type { Test } from '../types';
 import { Eye, Pencil, Plus, Search, Trash2 } from 'lucide-react';
 import Layout from '../components/layout';
@@ -77,8 +78,8 @@ const paginationItems = getPaginationItems(
     try {
       const res = await getTests();
       setTests(res.data.data || []);
-    } catch {
-      toast.error('Failed to load tests');
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error, 'Failed to load tests'));
     } finally {
       setLoading(false);
     }
@@ -92,8 +93,8 @@ const paginationItems = getPaginationItems(
       await deleteTest(id);
       toast.success('Test deleted');
       fetchTests();
-    } catch {
-      toast.error('Failed to delete');
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error, 'Failed to delete test'));
     }
   };
 
