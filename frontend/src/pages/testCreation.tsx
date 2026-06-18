@@ -10,7 +10,7 @@ import TestTypeTabs from '../components/testCreation/testTypeTabs'
 import MultiSelect from '../components/testCreation/multiSelect'
 import DifficultySelector from '../components/testCreation/difficultySelector'
 import NumberStepper from '../components/testCreation/numberStepper'
-import { BLANK_TC } from '../service/utils'
+import { BLANK_TC, getApiErrorMessage } from '../service/utils'
 
 const TABS = ['Chapter Wise', 'PYQ', 'Mock Test'];
 const TYPE_MAP: Record<string, string> = { 'Chapter Wise': 'chapterwise', 'PYQ': 'pyq', 'Mock Test': 'mock' };
@@ -225,8 +225,8 @@ useEffect(() => {
        } else {
             navigate(`/add-questions/${tid}`);
         }
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || 'Failed to save test');
+    } catch (err: unknown) {
+      toast.error(getApiErrorMessage(err, 'Failed to save test'));
     } finally {
       setLoading(false);
     }

@@ -3,6 +3,7 @@ import { useAuth } from '../context/authContext'
 import {useNavigate} from 'react-router-dom'
 import { login } from '../service/apiService'
 import { toast } from 'sonner'
+import { getApiErrorMessage } from '../service/utils'
 
 const Login = () => {
     const[userId,setUserId]=useState<string>('')
@@ -21,10 +22,10 @@ const Login = () => {
       setAuth(user, token);
       toast.success('Login successful!');
       navigate('/dashboard');
-    } catch (err: any) {
+    } catch (err: unknown) {
         console.log(err,"error from backend");
         
-      toast.error(err?.response?.data?.message || 'Login failed');
+      toast.error(getApiErrorMessage(err, 'Login failed'));
     } finally {
       setLoading(false);
     }

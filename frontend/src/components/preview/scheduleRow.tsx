@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar, ChevronDown } from 'lucide-react';
+import { TIME_OPTIONS } from '../../service/utils';
 
 interface ScheduleRowProps {
   scheduleDate: string;
@@ -7,11 +8,6 @@ interface ScheduleRowProps {
   scheduleTime: string;
   setScheduleTime: (v: string) => void;
 }
-
-const TIME_OPTIONS = Array.from({ length: 24 }, (_, h) => [
-  `${String(h).padStart(2, '0')}:00`,
-  `${String(h).padStart(2, '0')}:30`,
-]).flat();
 
 const ScheduleRow: React.FC<ScheduleRowProps> = ({
   scheduleDate, setScheduleDate, scheduleTime, setScheduleTime,

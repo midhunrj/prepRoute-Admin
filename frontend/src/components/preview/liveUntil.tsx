@@ -1,16 +1,12 @@
 import React from 'react';
 import { Calendar, ChevronDown } from 'lucide-react';
+import { TIME_OPTIONS } from '../../service/utils';
 
 type LiveDuration = 'Always Available' | '1 Week' | '2 Weeks' | '3 Weeks' | '1 Month' | 'Custom Duration';
 
 const LIVE_OPTIONS: LiveDuration[] = [
   'Always Available', '1 Week', '2 Weeks', '3 Weeks', '1 Month', 'Custom Duration',
 ];
-
-const TIME_OPTIONS = Array.from({ length: 24 }, (_, h) => [
-  `${String(h).padStart(2, '0')}:00`,
-  `${String(h).padStart(2, '0')}:30`,
-]).flat();
 
 interface LiveUntilProps {
   liveDuration: LiveDuration;
