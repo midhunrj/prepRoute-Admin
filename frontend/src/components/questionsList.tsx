@@ -1,12 +1,13 @@
 import { Pencil } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { Question } from '../types';
 
 interface Props {
-  questions: any[];
+  questions: Question[];
   testId: string;
 }
 
-const options = [
+const options: (keyof Question)[] = [
   "option1",
   "option2",
   "option3",

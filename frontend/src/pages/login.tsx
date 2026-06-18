@@ -3,6 +3,7 @@ import { useAuth } from '../context/authContext'
 import {useNavigate} from 'react-router-dom'
 import { login } from '../service/apiService'
 import { toast } from 'sonner'
+import axios from 'axios'
 
 const Login = () => {
     const[userId,setUserId]=useState<string>('')
@@ -16,15 +17,13 @@ const Login = () => {
     setLoading(true);
     try {
       const res = await login(userId, password);
-      console.log(res,"response")
       const { token, user } = res.data.data;
       setAuth(user, token);
       toast.success('Login successful!');
       navigate('/dashboard');
-    } catch (err: any) {
-        console.log(err,"error from backend");
-        
-      toast.error(err?.response?.data?.message || 'Login failed');
+    } catch (err: unknown) {
+      const message = axios.isAxiosError(err) ? err.response?.data?.message : undefined;
+      toast.error(message || 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -100,6 +99,7 @@ const Login = () => {
                 User ID
             </label>
             <input type="text" value={userId} onChange={(e)=>setUserId(e.target.value)}
+             autoComplete="username"
              className='w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500' />
             </div>    
             <div>
@@ -107,6 +107,7 @@ const Login = () => {
                 Password
             </label>
             <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}
+             autoComplete="current-password"
              className='w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500' />
             </div>
             <button type='submit' className='w-full bg-[#5988EF] cursor-pointer hover:bg-blue-700 text-white  py-3 rounded-lg font-medium transition disabled:opacity-60'>

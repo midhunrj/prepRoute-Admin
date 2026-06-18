@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {toast} from "sonner";
 
 import { getTestById, updateTest, fetchBulkQuestions } from "../../service/apiService";
+import type { Test, Question } from "../../types";
 import Layout from "../layout";
 import type { LiveDuration } from "./liveUntil";
 import PreviewHeader from "./previewHeader";
@@ -19,8 +20,8 @@ const Preview = () => {
   const { testId } = useParams();
   const navigate = useNavigate();
 
-  const [test, setTest] = useState<any>(null);
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [test, setTest] = useState<Test | null>(null);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
 
   const [showPublishModal, setShowPublishModal] = useState(false);

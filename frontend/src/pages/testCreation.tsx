@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router'
 import type { Subject, SubTopic, TestFormData, Topic } from '../types'
 import { createTest, getMultipleTopicsByTopicList, getSubjects, getSubTopicsByTopics, getTestById, getTopicsBySubject, updateTest } from '../service/apiService'
 import { toast } from 'sonner'
+import axios from 'axios'
 import Breadcrumb from '../components/testCreation/breadCrumb'
 import TestTypeTabs from '../components/testCreation/testTypeTabs'
 import MultiSelect from '../components/testCreation/multiSelect'
@@ -46,8 +47,6 @@ useEffect(() => {
   try {
     const res = await getTestById(id!);
     const testData = res.data.data;
-
-    console.log(testData, "testData");
 
 
     const subjectsRes = await getSubjects();
@@ -137,8 +136,7 @@ useEffect(() => {
       )?.[0] || "Chapter Wise";
 
     setActiveTab(tabKey);
-  } catch (err) {
-    console.log(err);
+  } catch {
     toast.error("Failed to load test");
   }
 };
@@ -184,7 +182,7 @@ useEffect(() => {
   };
 
   const validate = (): boolean => {
-    const e: any = {};
+    const e: Record<string, string> = {};
     if (!form.name.trim()) e.name = 'Test name is required';
     if (!form.subject) e.subject = 'Subject is required';
     if (!form.topics.length) e.topics = 'At least one topic required';
@@ -225,14 +223,15 @@ useEffect(() => {
        } else {
             navigate(`/add-questions/${tid}`);
         }
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || 'Failed to save test');
+    } catch (err: unknown) {
+      const message = axios.isAxiosError(err) ? err.response?.data?.message : undefined;
+      toast.error(message || 'Failed to save test');
     } finally {
       setLoading(false);
     }
   };
 
-  const setField = (field: keyof TestFormData, value: any) => {
+  const setField = (field: keyof TestFormData, value: string | number | string[]) => {
     setForm(f => ({ ...f, [field]: value }));
     setErrors(e => ({ ...e, [field]: undefined }));
   };

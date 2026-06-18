@@ -1,8 +1,9 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import type { Question } from '../../types';
 
 interface Props {
-  questions: any[];
+  questions: Question[];
   activeQIdx: number | null;
   editQuestion: (idx: number) => void;
   deleteQuestion: (idx: number) => void;

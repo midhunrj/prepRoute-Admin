@@ -9,6 +9,7 @@ import { toast } from 'sonner'
 import { useNavigate, useParams } from 'react-router'
 import { bulkCreateQuestions, fetchBulkQuestions, getTestById } from '../service/apiService'
 import { BLANK_Q } from '../service/utils'
+import axios from 'axios'
 
 const AddQuestions = () => {
   const { testId } = useParams();
@@ -104,12 +105,12 @@ const payload = finalQuestions.map(q => ({
   test_id: testId,
   subject:test?.subject
 }));
-console.log("Payload => ", payload);
       await bulkCreateQuestions(payload);
       toast.success('Questions saved!');
       navigate(`/preview/${testId}`);
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || 'Failed to save questions');
+    } catch (err: unknown) {
+      const message = axios.isAxiosError(err) ? err.response?.data?.message : undefined;
+      toast.error(message || 'Failed to save questions');
     } finally { setSaving(false); }
   };
 
