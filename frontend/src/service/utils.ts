@@ -1,4 +1,15 @@
+import axios from "axios";
 import type { Question, TestFormData } from "../types";
+
+export const getErrorMessage = (error: unknown, fallback: string): string => {
+  if (axios.isAxiosError(error)) {
+    return error.response?.data?.message || error.message || fallback;
+  }
+  if (error instanceof Error) {
+    return error.message;
+  }
+  return fallback;
+};
 
 export const BLANK_Q = (): Question => ({
   type: 'mcq',

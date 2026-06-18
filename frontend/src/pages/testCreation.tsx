@@ -5,12 +5,12 @@ import { useNavigate, useParams } from 'react-router'
 import type { Subject, SubTopic, TestFormData, Topic } from '../types'
 import { createTest, getMultipleTopicsByTopicList, getSubjects, getSubTopicsByTopics, getTestById, getTopicsBySubject, updateTest } from '../service/apiService'
 import { toast } from 'sonner'
+import { getErrorMessage, BLANK_TC } from '../service/utils'
 import Breadcrumb from '../components/testCreation/breadCrumb'
 import TestTypeTabs from '../components/testCreation/testTypeTabs'
 import MultiSelect from '../components/testCreation/multiSelect'
 import DifficultySelector from '../components/testCreation/difficultySelector'
 import NumberStepper from '../components/testCreation/numberStepper'
-import { BLANK_TC } from '../service/utils'
 
 const TABS = ['Chapter Wise', 'PYQ', 'Mock Test'];
 const TYPE_MAP: Record<string, string> = { 'Chapter Wise': 'chapterwise', 'PYQ': 'pyq', 'Mock Test': 'mock' };
@@ -37,9 +37,11 @@ useEffect(() => {
   if (isEdit) {
     loadTest();
   } else {
-    getSubjects().then(r =>
-      setSubjects(r.data.data || [])
-    );
+    getSubjects()
+      .then(r => setSubjects(r.data.data || []))
+      .catch((error: unknown) => {
+        toast.error(getErrorMessage(error, 'Failed to load subjects'));
+      });
   }
 }, []);
   const loadTest = async () => {
@@ -137,9 +139,8 @@ useEffect(() => {
       )?.[0] || "Chapter Wise";
 
     setActiveTab(tabKey);
-  } catch (err) {
-    console.log(err);
-    toast.error("Failed to load test");
+  } catch (error: unknown) {
+    toast.error(getErrorMessage(error, "Failed to load test"));
   }
 };
 
@@ -147,7 +148,9 @@ useEffect(() => {
     try {
       const res = await getTopicsBySubject(subjectId);
       setTopics(res.data.data || []);
-    } catch {}
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error, 'Failed to load topics'));
+    }
   };
 
   const loadSubTopics = async (topicIds: string[]) => {
@@ -156,7 +159,9 @@ useEffect(() => {
       
       const res = await getMultipleTopicsByTopicList(topicIds);
       setSubTopics(res.data.data || []);
-    } catch {}
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error, 'Failed to load sub-topics'));
+    }
   };
 
   const handleSubjectChange = (subjectId: string) => {
@@ -225,8 +230,8 @@ useEffect(() => {
        } else {
             navigate(`/add-questions/${tid}`);
         }
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || 'Failed to save test');
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error, 'Failed to save test'));
     } finally {
       setLoading(false);
     }
